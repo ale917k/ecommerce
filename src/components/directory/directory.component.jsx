@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import MenuItem from "../menu-item/menu-item.component";
+import SECTIONS from "../../SECTIONS";
 
-import SECTIONS from "../../sections";
+import MenuItem from "../menu-item/menu-item.component";
 
 import "./directory.styles.scss";
 
