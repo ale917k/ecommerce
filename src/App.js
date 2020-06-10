@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
@@ -13,19 +13,30 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(null);
 
-
   useEffect(() => {
-    let unsubscribeFromAuth = null;
-    unsubscribeFromAuth = auth.onAuthStateChanged(loggedUser => {
-      setUser(loggedUser);
+    // Mounting component
+    const unsubscribe = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
 
-      console.log(user);
+        userRef.onSnapshot(snapshot => {
+          setUser({
+            user: {
+              id: snapshot.id,
+              ...snapshot.data()
+            }
+          })          
+        });
+      } else {
+        setUser(null);
+      }
     });
 
-    return function cleanup() {
-      unsubscribeFromAuth();
-    };
-  });
+    // Unmounting component
+    return () => unsubscribe();
+  }, []);
+
+  // console.log(user);
 
   return (
     <Fragment>

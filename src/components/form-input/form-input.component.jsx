@@ -5,7 +5,6 @@ import "./form-input.styles.scss";
 const FormInput = ({ handleChange, label, ...otherProps }) => (
   <div className="group">
     <input
-      id={`form-input-${label.toLowerCase()}`}
       className="form-input"
       onChange={handleChange}
       {...otherProps}

@@ -23,14 +23,14 @@ const SignIn = () => {
   };
 
   const handleChange = (event) => {
-    const { value, name } = event.target;
+    const { name, value } = event.target;
 
-    setUser({ [name]: value });
+    setUser({ ...user, [name]: value });
   };
 
   return (
     <div className="sign-in">
-      <h2>I already have an account</h2>
+      <h2 className="title">I already have an account</h2>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -62,7 +62,7 @@ const SignIn = () => {
             value="Submit Form"
             isGoogleSignIn
           >
-            Sign In
+            Sign In with Google
           </CustomButton>
         </div>
       </form>
