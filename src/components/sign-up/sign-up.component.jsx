@@ -8,35 +8,30 @@ import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import "./sign-up.styles.scss";
 
 const SignUp = () => {
-  const [user, setUser] = useState({
+  const [newUser, setNewUser] = useState({
     displayName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
-  // useEffect(() => { createUserProfileDocument({uid: 1234}, "test") }, [])
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { displayName, email, password, confirmPassword } = user;
+    const { displayName, email, password, confirmPassword } = newUser;
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
-    const { newUser } = await auth.createUserWithEmailAndPassword(
-      email,
-      password
-    );
+    const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
     try {
       console.log("SignUp displayName: ", displayName);
 
-      createUserProfileDocument(newUser, { displayName });
+      createUserProfileDocument(user, { displayName });
 
-      setUser({
+      setNewUser({
         displayName: "",
         email: "",
         password: "",
@@ -49,7 +44,7 @@ const SignUp = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    setNewUser({ ...newUser, [name]: value });
   };
 
   return (
@@ -61,7 +56,7 @@ const SignUp = () => {
         <FormInput
           type="text"
           name="displayName"
-          value={user.displayName}
+          value={newUser.displayName}
           handleChange={handleChange}
           label="Display Name"
           required
@@ -70,7 +65,7 @@ const SignUp = () => {
         <FormInput
           type="email"
           name="email"
-          value={user.email}
+          value={newUser.email}
           handleChange={handleChange}
           label="Email"
           required
@@ -79,7 +74,7 @@ const SignUp = () => {
         <FormInput
           type="password"
           name="password"
-          value={user.password}
+          value={newUser.password}
           handleChange={handleChange}
           label="Password"
           required
@@ -88,7 +83,7 @@ const SignUp = () => {
         <FormInput
           type="password"
           name="confirmPassword"
-          value={user.confirmPassword}
+          value={newUser.confirmPassword}
           handleChange={handleChange}
           label="Confirm Password"
           required
