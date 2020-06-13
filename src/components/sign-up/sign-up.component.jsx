@@ -15,21 +15,26 @@ const SignUp = () => {
     confirmPassword: "",
   });
 
+  // useEffect(() => { createUserProfileDocument({uid: 1234}, "test") }, [])
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (user.password !== user.confirmPassword) {
+    const { displayName, email, password, confirmPassword } = user;
+
+    if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
+    const { newUser } = await auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
 
     try {
-      const { newUser } = await auth.createUserWithEmailAndPassword(
-        user.email,
-        user.password
-      );
+      console.log("SignUp displayName: ", displayName);
 
-      createUserProfileDocument(newUser, "test");
+      createUserProfileDocument(newUser, { displayName });
 
       setUser({
         displayName: "",
