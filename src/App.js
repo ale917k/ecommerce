@@ -15,13 +15,9 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import "./App.css";
 
 const App = ({ currentUser, checkUserSession }) => {
-  let unsubscribeFromAuth = null;
-
   useEffect(() => {
     checkUserSession();
-
-    return () => unsubscribeFromAuth();
-  }, [checkUserSession, unsubscribeFromAuth]);
+  }, [checkUserSession]);
 
   return (
     <Fragment>
