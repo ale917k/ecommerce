@@ -5,8 +5,6 @@ import axios from "axios";
 
 import { paymentSuccess } from "../../redux/user/user.actions";
 
-import Logo from "../../assets/logo.svg";
-
 const StripeCheckoutButton = ({ price, paymentSuccess }) => {
   const priceForStripe = price * 100;
   const publshableKey =
@@ -39,7 +37,7 @@ const StripeCheckoutButton = ({ price, paymentSuccess }) => {
       name="Ecommerce Ltd"
       billingAddress
       shippingAddress
-      image={Logo}
+      image="https://svgshare.com/i/CUz.svg"
       description={`Your total is £${price}`}
       currency="GBP"
       amount={priceForStripe}
