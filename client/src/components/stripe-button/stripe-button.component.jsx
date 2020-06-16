@@ -1,10 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 
+import { paymentSuccess } from "../../redux/user/user.actions";
+
 import Logo from "../../assets/logo.svg";
 
-const StripeCheckoutButton = ({ price }) => {
+const StripeCheckoutButton = ({ price, paymentSuccess }) => {
   const priceForStripe = price * 100;
   const publshableKey =
     "pk_test_51GtHLMFslugsn0QIuXaZspSyxXvByadCgd8mRPQ5k9MWMIUAEaSsswVDJNLevd5yemJOlgKNt24NilfWZDgjzc0H00qJpUtIuu";
@@ -20,6 +23,7 @@ const StripeCheckoutButton = ({ price }) => {
     })
       .then((response) => {
         alert("Payment Successful!");
+        paymentSuccess();
       })
       .catch((error) => {
         console.log("Payment error: ", JSON.parse(error));
@@ -46,4 +50,8 @@ const StripeCheckoutButton = ({ price }) => {
   );
 };
 
-export default StripeCheckoutButton;
+const mapDispatchToProps = (dispatch) => ({
+  paymentSuccess: () => dispatch(paymentSuccess()),
+});
+
+export default connect(null, mapDispatchToProps)(StripeCheckoutButton);
