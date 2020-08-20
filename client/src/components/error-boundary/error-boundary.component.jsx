@@ -26,9 +26,9 @@ class ErrorBoundary extends Component {
           className="error-image-container"
           style={{ backgroundImage: "url('https://i.imgur.com/A040Lxr.png')" }}
         ></div>
-        <div className="error-image-text">
-          Sorry, this page is lost in space
-        </div>
+            <div className="error-image-text">
+              Sorry, this page is lost in space
+            </div>
       </div>
     ) : (
       this.props.children
