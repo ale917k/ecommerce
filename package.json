@@ -6,6 +6,7 @@
     "npm": "6.14.5"
   },
   "scripts": {
+    "preinstall": "cd client && npm install",
     "client": "cd client && npm start",
     "server": "nodemon server.js",
     "build": "cd client && npm run build",
@@ -14,7 +15,6 @@
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
-    "body-parser": "^1.18.3",
     "compression": "^1.7.4",
     "cors": "2.8.5",
     "dotenv": "7.0.0",
