@@ -2,6 +2,8 @@
 
 Ecommerce is a simple React template to build ecommerce on top of it.
 
+[Open Live Project](https://clothing-ecommerce-template.herokuapp.com/)
+
 ## What It Uses:
 
 - Flexbox & Grids
