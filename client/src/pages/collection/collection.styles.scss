@@ -9,8 +9,11 @@
 
   .items {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(calc(min(275px, 100%)), 1fr)
+    );
+    grid-gap: 20px;
 
     & .collection-item {
       margin-bottom: 30px;

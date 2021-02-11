@@ -16,15 +16,12 @@ import "./header.styles.scss";
 
 const Header = ({ currentUser, hidden, signOutStart }) => (
   <div className="header">
-    <Link className="logo-container" to="/">
+    <Link to="/">
       <Logo />
     </Link>
     <div className="options">
       <Link className="option" to="/shop">
         SHOP
-      </Link>
-      <Link className="option" to="/contact">
-        CONTACT
       </Link>
       {currentUser ? (
         <div className="option" onClick={signOutStart}>
