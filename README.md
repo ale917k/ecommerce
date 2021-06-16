@@ -35,7 +35,7 @@ STRIPE_API_KEY=<stripe-api-key> # You can grab Stripe API key here: (https://str
 
 In order to handle your users and db, you will require an account with [Firebase](https://firebase.google.com/); You can then grab your project config and replace it on `./client/src/firebase/firebase.utils.js`
 
-You can then run `npm start`; That will boot up client and server concurrently.
+You can then run `npm run dev` which will boot up client and server concurrently.
 
 ## License
 
